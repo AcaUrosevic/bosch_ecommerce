@@ -17,7 +17,9 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String ownerKey;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="user_id", nullable=false)
+    private com.bosch.ecommerce.user.User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
