@@ -33,7 +33,7 @@ public class ProductService {
             int page, int size, String sort, String category, String qMinPrice, String qMaxPrice, String q
     ) {
         Pageable pageable = PageRequest.of(page, size, parseSort(sort));
-        Specification<Product> spec = Specification.where(null);
+        Specification<Product> spec = Specification.allOf();
 
         if (category != null && !category.isBlank()) {
             spec = spec.and((root, cq, cb) -> cb.equal(root.get("category"), category));
